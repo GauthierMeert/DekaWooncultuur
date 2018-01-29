@@ -14,6 +14,7 @@ import { CategoryAddComponent } from './category/category-add/category-add.compo
 import { environment } from '../environments/environment';
 import { CategoryService } from './category/category.service';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryFeComponent } from './category/category-fe/category-fe.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     AppComponent,
     HomeComponent,
     CategoryAddComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryFeComponent
   ],
   imports: [
     MaterializeModule,

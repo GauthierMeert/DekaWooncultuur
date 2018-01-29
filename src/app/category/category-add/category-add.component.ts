@@ -1,3 +1,5 @@
+import { AngularFireObject } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 import { Category } from './../category';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FirebaseApp } from "angularfire2";
@@ -5,6 +7,8 @@ import * as firebase from 'firebase';
 import { Upload } from '../../file';
 import { error } from 'selenium-webdriver';
 import { CategoryService } from '../category.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-category-add',
@@ -12,9 +16,10 @@ import { CategoryService } from '../category.service';
   styleUrls: ['./category-add.component.css']
 })
 export class CategoryAddComponent implements OnInit {
-
+  category: Observable<Category>;
+  isNewCategory: boolean;
+  categoryKey: any;
   storageRef: firebase.storage.Reference;
-  category: Category;
   upload: boolean;
   test: string;
   file: any;
@@ -22,9 +27,10 @@ export class CategoryAddComponent implements OnInit {
   private uploadTask: firebase.storage.UploadTask;
 
   constructor( @Inject(FirebaseApp) firebaseApp: firebase.app.App,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.storageRef = firebase.storage().ref('categories');
-    this.category = new Category();
   }
 
   uploadFile(event: any) {
@@ -37,7 +43,7 @@ export class CategoryAddComponent implements OnInit {
   }
 
   saveCategory(category: Category) {
-    this.uploadTask = this.storageRef.child('nieuwefoto').put(this.file);
+    this.uploadTask = this.storageRef.child(category.categoryName).put(this.file);
     this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       () => {
         this.upload = true;
@@ -47,14 +53,27 @@ export class CategoryAddComponent implements OnInit {
         this.upload = false;
       },
       () => {
-        this.category.categoryImage = this.uploadTask.snapshot.downloadURL;
-        this.categoryService.saveCategory(category);
-        this.category = new Category();
+        this.category.subscribe((res) => {
+          res.categoryImage = this.uploadTask.snapshot.downloadURL;
+        });
+        console.log(category.id);
+        this.isNewCategory ? this.categoryService.saveCategory(category) : this.categoryService.editCategory(category);
         this.upload = false;
+        this.router.navigate([`categories`])
       })
   }
 
   ngOnInit() {
+    this.categoryKey = this.activatedRoute.snapshot.params['id'];
+    this.isNewCategory = this.categoryKey === 'new';
+    !this.isNewCategory ? this.getCategory() : this.category = Observable.of({}) as Observable<Category>;
   }
 
+  getCategory(): any {
+    this.category = this.categoryService.getCategory(this.categoryKey).snapshotChanges().map(actions => {
+        const data = actions.payload.data() as Category;
+        const id = actions.payload.id;
+        return { id, ...data };
+      });
+  }
 }

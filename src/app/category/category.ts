@@ -1,5 +1,5 @@
-export class Category{
-    $key:string;
+export interface Category {
+    id: string;
     categoryName: string;
     categoryImage: string;
 }

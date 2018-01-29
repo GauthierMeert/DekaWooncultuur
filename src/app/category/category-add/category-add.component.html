@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col s12">
-    <div class="card darken-1">
+    <div class="card darken-1" *ngIf="category | async as category">
       <div class="card-content">
         <p class="card-title">Categorie toevoegen</p>
         <form>

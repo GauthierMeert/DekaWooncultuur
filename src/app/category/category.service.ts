@@ -1,41 +1,34 @@
 import { Category } from './category';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Injectable()
 export class CategoryService {
-  private categories$: AngularFireList<Category>;
-  categories: Observable<Category[]>;
-  category: Observable<Category>;
-  private category$: AngularFireObject<Category>;
+  private categories$: AngularFirestoreCollection<Category>;
+  private category$: AngularFirestoreDocument<Category>;
 
-  constructor(private db: AngularFireDatabase) {
-    this.category$ = this.db.object('category');
-    this.category = this.category$.valueChanges();
-    this.categories$ = this.db.list('categories');
-    this.categories = this.categories$.valueChanges();
+  constructor(private db: AngularFirestore) {
+    this.categories$ = this.db.collection('categories');
   }
 
-  getCategory(CategoryKey: string) {
-    return this.db.object('categories/${CategoryKey}').valueChanges();
+  getCategory(categoryKey: string) {
+    return this.db.doc<Category>('categories/' + categoryKey);
   }
 
-  getcategories() {
-    return this.categories;
+  getCategories() {
+    return this.categories$;
   }
 
-  saveCategory(Category: Category) {
-    this.categories$.push(Category).then(_ => console.log('succes'));
+  saveCategory(category: Category) {
+    this.categories$.add(category).then(_ => console.log('succes')).catch(error => console.log(error));
   }
 
-  editCategory(Category: Category) {
-    this.categories$.update(Category.$key, Category).then(_ => console.log('succes')).catch(error => console.log(error));
+  editCategory(category: Category) {
+    this.db.doc<Category>('categories/' + category.id).update(category).then(_ => console.log('succes')).catch(error => console.log(error));
   }
 
-  removeCategory(Category) {
-    this.category$.remove().then(_ => console.log('succes')).catch(error => console.log(error));
+  removeCategory(category: Category) {
+    this.db.doc<Category>('categories/' + category.id).delete().then(_ => console.log('succes')).catch(error => console.log(error));
   }
-
-
 }

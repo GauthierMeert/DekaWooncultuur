@@ -43,8 +43,7 @@ ImageContainer
 }
 
 .text {
-  border: 0.1px solid #b3a371;
-  border-width: 5px;
+  border: 1px solid #b3a371;
   color: white;
   font-size: 16px;
   font-style: oblique;
@@ -56,23 +55,27 @@ Divider
 ---------------------------------------------------------*/
 
  
- .outer-box{
+ .divider-deka{
     position: relative;
-    background-color: aqua;
+    height: 31px;
     width: 100%;
+    padding-top: 15px;
+    margin: 15px 0px 15px 0px;
   }
 
-  .style15{
-    display: block;
+  .line{
+    border: 0.5px solid #b3a371;
     width: 100%;
-    height: auto;
   }
 
   .inner-box{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
+    top: 0;
+    height: 30px;
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    }
 
   
 /*---------------------------------------------------------

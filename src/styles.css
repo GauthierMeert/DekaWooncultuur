@@ -1,10 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-.small-image{
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-}
-
 /*---------------------------------------------------------
 ImageContainer
 ---------------------------------------------------------*/
@@ -54,8 +47,7 @@ ImageContainer
 Divider
 ---------------------------------------------------------*/
 
- 
- .divider-deka{
+  .divider-deka{
     position: relative;
     height: 31px;
     width: 100%;
@@ -75,9 +67,40 @@ Divider
     left: 0;
     right: 0;
     margin: 0 auto;
-    }
-
+  }
   
+/*---------------------------------------------------------
+Carousel
+---------------------------------------------------------*/
+
+.carousel-deka{
+  position: relative;
+}
+
+.carousel-deka .center-left{
+  position: absolute;
+  top: 50%;
+  left: 35px;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-deka .center-right{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-brand{
+  max-height: 200px;
+}
+
 /*---------------------------------------------------------
 Rest
 ---------------------------------------------------------*/
+
+.small-image{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

@@ -4,16 +4,17 @@ ImageContainer
 
 .imageContainer {
     position: relative;
+    height: 300px;
+    margin-bottom: 10px;
+    display: flex;
 }
 
-.image {
+.imageContainer .image {
   opacity: 1;
-  display: block;
-  width: 100%;
-  max-height: 300px;
   transition: .5s ease;
   backface-visibility: hidden;
-  margin-bottom: 10px;
+  overflow:hidden;
+  width: 100%;
 }
 
 .middle {
@@ -103,4 +104,8 @@ Rest
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+.overview-element{
+  cursor: pointer;
 }

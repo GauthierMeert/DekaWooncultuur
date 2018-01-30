@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { MaterializeAction } from 'angular2-materialize';
+import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   ArrowLeft: string = "./../assets/paddle_prev_999.png";
   ArrowRight: string = "./../assets/paddle_next_999.png";
+  carouselActions = new EventEmitter<string | MaterializeAction>();
+  carouselBrandActions = new EventEmitter<string | MaterializeAction>();
 
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => this.nextSlideBrand(), 3000);
   }
 
   fireHoverEvent($event) {
-    if($event.target.className == "center-left")
-    {
+    if ($event.target.className == "center-left") {
       if ($event.type == "mouseleave") {
         this.ArrowLeft = "./../assets/paddle_prev_999.png";
       }
@@ -24,8 +28,7 @@ export class HomeComponent implements OnInit {
         this.ArrowLeft = "./../assets/paddle_prev_fff.png";
       }
     }
-    else
-    {
+    else {
       if ($event.type == "mouseleave") {
         this.ArrowRight = "./../assets/paddle_next_999.png";
       }
@@ -34,4 +37,17 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+
+  nextSlide() {
+    this.carouselActions.emit({ action: "carousel", params: ['next'] });
+  }
+
+  nextSlideBrand() {
+    this.carouselBrandActions.emit({ action: "carousel", params: ['next'] });
+  }
+
+  previousSlide() {
+    this.carouselActions.emit({ action: "carousel", params: ['prev'] });
+  }
+
 }

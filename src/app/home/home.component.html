@@ -1,5 +1,5 @@
 <div class="carousel-deka">
-  <div materialize="carousel" [materializeParams]="[{fullWidth:true}]" class="carousel carousel-slider" data-indicators="true">
+  <div materialize="carousel" [materializeParams]="[{fullWidth:true}]" [materializeActions]="carouselActions" class="carousel carousel-slider" data-indicators="true">
     <div class="carousel-item amber white-text" href="#two!">
       <h2>Second Panel</h2>
       <p class="white-text">This is your second panel</p>
@@ -33,10 +33,10 @@
       <p class="white-text">This is your fourth panel</p>
     </div>
   </div>
-  <div class="center-left" (mouseenter)="fireHoverEvent($event)" (mouseleave)="fireHoverEvent($event)">
+  <div class="center-left" (mouseenter)="fireHoverEvent($event)" (mouseleave)="fireHoverEvent($event)" (click)="previousSlide()">  
     <img [src]="ArrowLeft">
   </div>
-  <div class="center-right" (mouseenter)="fireHoverEvent($event)" (mouseleave)="fireHoverEvent($event)">
+  <div class="center-right" (mouseenter)="fireHoverEvent($event)" (mouseleave)="fireHoverEvent($event)" (click)="nextSlide()">
     <img [src]="ArrowRight">
   </div>
 </div>
@@ -53,14 +53,14 @@
   <img class="inner-box" src="./../assets/hometransparant2.png" />
 </div>
 
-<div materialize="carousel" [materializeParams]="[{dist:0}]" class="carousel carousel-brand">
+<div materialize="carousel" [materializeParams]="[{dist:0}]" [materializeActions]="carouselBrandActions" class="carousel carousel-brand">
   <div class="carousel-item vertical-align" href="#two!">
     <img src="./../assets/brands/AmClassic.jpg">
   </div>
-  <div class="carousel-item red" href="#one!">
+  <div class="carousel-item" href="#one!">
     <img src="./../assets/brands/aristide.jpg">
   </div>
-  <div class="carousel-item amber" href="#two!">
+  <div class="carousel-item" href="#two!">
     <img src="./../assets/brands/ArtCopi.png">
   </div>
   <div class="carousel-item green" href="#three!">

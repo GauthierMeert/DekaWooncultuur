@@ -7,6 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import 'firebase/storage';
 import 'hammerjs';
+import 'timers';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +16,8 @@ import { environment } from '../environments/environment';
 import { CategoryService } from './category/category.service';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryFeComponent } from './category/category-fe/category-fe.component';
+import { OverviewComponent } from './overview/overview.component';
+import { CarouselListComponent } from './carousel/carousel-list/carousel-list.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { CategoryFeComponent } from './category/category-fe/category-fe.componen
     HomeComponent,
     CategoryAddComponent,
     CategoryListComponent,
-    CategoryFeComponent
+    CategoryFeComponent,
+    OverviewComponent,
+    CarouselListComponent
   ],
   imports: [
     MaterializeModule,
@@ -36,6 +41,7 @@ import { CategoryFeComponent } from './category/category-fe/category-fe.componen
       { path: "category", component: CategoryAddComponent },
       { path: "category/:id", component: CategoryAddComponent },
       { path: "categories", component: CategoryListComponent },
+      { path: "overview", component: OverviewComponent },
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "**", redirectTo: "home", pathMatch: "full" }
     ])

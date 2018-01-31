@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'angular2-materialize';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { NgxMasonryModule } from './ngx-masonry/ngx-masonry.module';
 import 'firebase/storage';
 import 'hammerjs';
 
@@ -17,6 +18,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { CategoryFeComponent } from './category/category-fe/category-fe.component';
 import { OverviewComponent } from './overview/overview.component';
 import { CarouselListComponent } from './carousel/carousel-list/carousel-list.component';
+import { MasonryComponent } from './masonry/masonry.component';
 
 
 @NgModule({
@@ -27,12 +29,14 @@ import { CarouselListComponent } from './carousel/carousel-list/carousel-list.co
     CategoryListComponent,
     CategoryFeComponent,
     OverviewComponent,
-    CarouselListComponent
+    CarouselListComponent,
+    MasonryComponent
   ],
   imports: [
     MaterializeModule,
     BrowserModule,
     FormsModule,
+    NgxMasonryModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     RouterModule.forRoot([

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { NgxMasonryOptions } from './../ngx-masonry/ngx-masonry-options.interface';
+import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({
   selector: 'app-masonry',

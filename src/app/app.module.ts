@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'angular2-materialize';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { NgxMasonryModule } from './ngx-masonry/ngx-masonry.module';
+import { NgxMasonryModule } from 'ngx-masonry';
 import 'firebase/storage';
 import 'hammerjs';
 

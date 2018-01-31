@@ -8,14 +8,12 @@ import { Router } from '@angular/router';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  navigateCatgories(){
-    console.log("CLICK!");
-    this.router.navigate(["/categories"]);
+  navigateCatgories() {
+    this.router.navigate(["./categories"]); //Slash in URL geeft aan dat je wil navigeren vanaf de root --> ./ voegt gewoon toe aan url
   }
-
 }

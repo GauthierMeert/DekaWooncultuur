@@ -7,7 +7,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import 'firebase/storage';
 import 'hammerjs';
-import 'timers';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -38,10 +37,15 @@ import { CarouselListComponent } from './carousel/carousel-list/carousel-list.co
     AngularFirestoreModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
-      { path: "category", component: CategoryAddComponent },
-      { path: "category/:id", component: CategoryAddComponent },
-      { path: "categories", component: CategoryListComponent },
-      { path: "overview", component: OverviewComponent },
+      {
+        path: "overview",
+        component: OverviewComponent,
+        children: [
+          { path: '', redirectTo: 'categories', pathMatch: "full" },
+          { path: "categories", component: CategoryListComponent },
+          { path: "categories/:id", component: CategoryAddComponent }
+        ]
+      },
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "**", redirectTo: "home", pathMatch: "full" }
     ])

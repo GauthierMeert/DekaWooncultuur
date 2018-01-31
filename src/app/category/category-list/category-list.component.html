@@ -1,6 +1,19 @@
 <div class="card-panel grey lighten-5 z-depth-1">
   <div class="card-content">
-    <table class="highlight responsive-table">
+    <div class="preloader-wrapper big active" *ngIf="showSpinner">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    <table class="highlight responsive-table" *ngIf="categories">
       <thead>
         <tr>
           <th>Afbeelding</th>
@@ -9,24 +22,11 @@
         </tr>
       </thead>
       <tbody>
-        <div class="preloader-wrapper big active right" *ngIf="showSpinner">  
-          <div class="spinner-layer spinner-blue-only">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
         <tr *ngFor="let category of categories | async">
           <td>
             <img class="small-image" src="{{category.categoryImage}}">
           </td>
-          <td class="col s2">{{category.categoryName}}</td>
+          <td>{{category.categoryName}}</td>
           <td>
             <button class="waves-effect waves-light btn" [routerLink]="['/category', category.id]">
               <i class="material-icons">create</i>
@@ -41,7 +41,7 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red" [routerLink]="['/category', 'new']">
+  <a class="btn-floating btn-large red" [routerLink]="['new']">
     <i class="large material-icons">mode_edit</i>
   </a>
 </div>

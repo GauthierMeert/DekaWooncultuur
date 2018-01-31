@@ -59,7 +59,7 @@ export class CategoryAddComponent implements OnInit {
         console.log(category.id);
         this.isNewCategory ? this.categoryService.saveCategory(category) : this.categoryService.editCategory(category);
         this.upload = false;
-        this.router.navigate([`categories`])
+        this.router.navigate([`/overview/categories`])
       })
   }
 

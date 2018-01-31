@@ -1,6 +1,6 @@
+import { Observable } from 'rxjs/Rx';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MaterializeAction } from 'angular2-materialize';
-import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setInterval(() => this.nextSlideBrand(), 3000);
+    Observable.interval(3000).subscribe(x => {
+      this.nextSlideBrand();
+    });
   }
 
   fireHoverEvent($event) {

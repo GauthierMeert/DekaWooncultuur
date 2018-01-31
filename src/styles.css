@@ -106,6 +106,6 @@ Rest
   object-fit: cover;
 }
 
-.overview-element{
-  cursor: pointer;
+.full-width{
+  width: 100%;
 }

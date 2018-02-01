@@ -12,8 +12,4 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  navigateCatgories() {
-    this.router.navigate(["./categories"]); //Slash in URL geeft aan dat je wil navigeren vanaf de root --> ./ voegt gewoon toe aan url
-  }
 }

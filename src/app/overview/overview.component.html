@@ -6,22 +6,22 @@
           <img class="responsive-image full-width" src="./../assets/brands/AmClassic.jpg" />
         </div>
         <div class="row">
-          <Button class="btn full-width" [routerLink]="['./categories']">
+          <Button class="btn full-width" [routerLink]="['./categorieën']">
             Categorieën
           </Button>
         </div>
         <div class="row">
-          <Button class="btn full-width" (click)="navigateCatgories()">
+          <Button class="btn full-width">
             Leveranciers
           </Button>
         </div>
         <div class="row">
-          <Button class="btn full-width" (click)="navigateCatgories()">
+          <Button class="btn full-width">
             Carousel
           </Button>
         </div>
         <div class="row">
-          <Button class="btn full-width" (click)="navigateCatgories()">
+          <Button class="btn full-width" [routerLink]="['./artikelen']">
             Artikelen
           </Button>
         </div>
@@ -29,6 +29,10 @@
     </div>
   </div>
   <div class="col s10">
-    <router-outlet></router-outlet>
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="card-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>

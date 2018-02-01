@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="input-field col s6">
+    <select [ngModel]="initialValue" (ngModelChange)="onNgModelChange($event)" materialize="material_select" *ngIf="categories"
+      [materializeSelectOptions]="categories">
+      <option value="" disabled selected>Selecteer categorie</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</option>
+    </select>
+  </div>
+</div>
+<div class="row" *ngIf="articles">
+  <div class="imageContainerArticle col s12 m4 l3" *ngFor="let article of articles | async">
+    <img class="image responsive-img" src="{{article.imagePath}}">
+    <div class="middle">
+      <a class="btn red" (click)="deleteArticle(article)">Delete</a>
+    </div>
+  </div>
+</div>
+<input type="file" multiple name="file" id="file" class="inputfile" (change)="uploadFile($event, article)" />
+<div class="fixed-action-btn" [hidden]="addHidden">
+  <label for="file" class="btn-floating btn-large red">
+    <i class="large material-icons">cloud_upload</i>
+  </label>
+</div>

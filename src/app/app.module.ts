@@ -1,3 +1,4 @@
+import { ArticleService } from './articles/article.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { CategoryFeComponent } from './category/category-fe/category-fe.componen
 import { OverviewComponent } from './overview/overview.component';
 import { CarouselListComponent } from './carousel/carousel-list/carousel-list.component';
 import { MasonryComponent } from './masonry/masonry.component';
+import { ArticleListComponent } from './articles/article-list/article-list.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { MasonryComponent } from './masonry/masonry.component';
     CategoryFeComponent,
     OverviewComponent,
     CarouselListComponent,
-    MasonryComponent
+    MasonryComponent,
+    ArticleListComponent
   ],
   imports: [
     MaterializeModule,
@@ -42,19 +45,20 @@ import { MasonryComponent } from './masonry/masonry.component';
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
       {
-        path: "overview",
+        path: "overzicht",
         component: OverviewComponent,
         children: [
-          { path: '', redirectTo: 'categories', pathMatch: "full" },
-          { path: "categories", component: CategoryListComponent },
-          { path: "categories/:id", component: CategoryAddComponent }
+          { path: '', redirectTo: 'categorieën', pathMatch: "full" },
+          { path: "categorieën", component: CategoryListComponent },
+          { path: "categorieën/:id", component: CategoryAddComponent },
+          { path: "artikelen", component: ArticleListComponent },
         ]
       },
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "**", redirectTo: "home", pathMatch: "full" }
     ])
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, ArticleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,6 +28,7 @@ export class CategoryService {
     this.db.doc<Category>('categories/' + category.id).update(category).then(_ => console.log('succes')).catch(error => console.log(error));
   }
 
+  //TODO: wanneer een categorie verwijderd wordt --> ook de afbeelding uit de store verwijderen!!!
   removeCategory(category: Category) {
     this.db.doc<Category>('categories/' + category.id).delete().then(_ => console.log('succes')).catch(error => console.log(error));
   }

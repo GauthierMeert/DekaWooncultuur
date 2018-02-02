@@ -44,6 +44,7 @@ import { ArticleListComponent } from './articles/article-list/article-list.compo
     AngularFirestoreModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
+      { path: "mansory/:id", component: MasonryComponent },
       {
         path: "overzicht",
         component: OverviewComponent,

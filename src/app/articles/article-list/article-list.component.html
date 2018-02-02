@@ -11,7 +11,7 @@
   <div class="imageContainerArticle col s12 m4 l3" *ngFor="let article of articles | async">
     <img class="image responsive-img" src="{{article.imagePath}}">
     <div class="middle">
-      <a class="btn red" (click)="deleteArticle(article)">Delete</a>
+      <a class="btn red" (click)="deleteArticle(article)"><i class="material-icons">delete</i></a>
     </div>
   </div>
 </div>

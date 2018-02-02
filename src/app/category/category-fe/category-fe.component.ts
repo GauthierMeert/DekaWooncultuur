@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Category } from '../category';
@@ -11,8 +12,9 @@ import { CategoryService } from '../category.service';
 export class CategoryFeComponent implements OnInit {
   showSpinner: boolean = true;
   categories: Observable<Category[]>;
-  
-  constructor(private categoryService: CategoryService) { }
+
+  constructor(private categoryService: CategoryService,
+    private router: Router) { }
 
   getCategories(): any {
     this.categories = this.categoryService.getCategories().snapshotChanges().map(actions => {
@@ -23,10 +25,14 @@ export class CategoryFeComponent implements OnInit {
       });
     });
     this.categories.subscribe(() => this.showSpinner = false);
-  }  
+  }
 
-  removeCategory(category)
-  {
+  navigateToCategory(category:Category){
+    console.log(category);
+    this.router.navigate(['/mansory', category.id]);
+  }
+
+  removeCategory(category) {
     this.categoryService.removeCategory(category);
   }
 
